@@ -1,6 +1,7 @@
 ﻿Console.WriteLine("Enter your choice\n\t1 - To Fetch Top 3 High rated records\n\t" +
     "2 - Retrieve Products with rating higher then 3\n\t3 - To get count of reviews for a product ID\n\t" +
-    "4 - Retrieve Product Ids and Reviews\n\t5 - Skip Top 5 records and display\n");
+    "4 - Retrieve Product Ids and Reviews\n\t5 - Skip Top 5 records and display\n\t6 - Retrieve Product Ids and Reviews\n\t" +
+    "");
 int choice = Convert.ToInt32(Console.ReadLine());
 ProductReviewsManagement.ReviewsManagement reviewsManagement = new ProductReviewsManagement.ReviewsManagement();
 /* ------- ADDS DEFAULT DATA INTO PRODUCT REVIEWS LIST ------- */
@@ -54,6 +55,10 @@ switch (choice)
     case 5:
         reviewsManagement.SkipTop5Records(reviews);
         break;
+    case 6:
+        reviewsManagement.ProductIDAndReviewUsingSelectLINQ(reviews);
+        break;
+
 
 }
 

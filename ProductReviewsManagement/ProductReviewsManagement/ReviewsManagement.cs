@@ -64,5 +64,15 @@ namespace ProductReviewsManagement
                 Console.WriteLine("Product ID: " + item.ProductId + "\tUser ID: " + item.UserId + "\tRating: " + item.Rating + "\tReview: " + item.Review + "\tisLike: " + item.isLike);
             }
         }
+        //UC7 Retrieve only Product ID and review from records using LINQ select
+        public void ProductIDAndReviewUsingSelectLINQ(List<ProductReview> productReviews)
+        {
+            var result = productReviews.Select(reviews => new { ProductID = reviews.ProductId, Review = reviews.Review });
+            Console.WriteLine("Product ID\t|\tReview");
+            foreach (var item in result)
+            {
+                Console.WriteLine("\t" + item.ProductID + "\t|\t" + item.Review);
+            }
+        }
     }
 }
