@@ -109,5 +109,20 @@ namespace ProductReviewsManagement
                 Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));
             }
         }
+        // UC10 get average rating for all product ID in record.
+        public void AvgRatingOfProductID(List<ProductReview> productReviews)
+        {
+            DataTable table = createDatatable(productReviews);
+            var result = table.AsEnumerable().GroupBy(table => table.Field<int>("ProductID")).Select(field => new
+            {
+                ProductID = field.Key,
+                Average = field.Average(x => x.Field<int>("Rating"))
+            });
+            Console.WriteLine("Average rating of each product ID.");
+            foreach (var item in result)
+            {
+                Console.WriteLine("ProductID: " + item.ProductID + "\tAverage: " + item.Average);
+            }
+        }
     }
 }
