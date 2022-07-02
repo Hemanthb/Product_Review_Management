@@ -131,7 +131,21 @@ namespace ProductReviewsManagement
             var result = from product in table.AsEnumerable()
                          where product.Field<string>("Review") == "Nice"
                          select product;
-            Console.WriteLine("-------- Records With Reviews Rated Nice --------");
+            Console.WriteLine("\n-------- Records With Reviews Rated Nice --------\n");
+            foreach (var item in result)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));
+            }
+        }
+        //UC12 RECORDS HAVING USER-ID AS 10
+        public void RecordsForUserID10(List<ProductReview> productReviews)
+        {
+            DataTable table = createDatatable(productReviews);
+            var result = from product in table.AsEnumerable()
+                         where product.Field<int>("UserID") == 10
+                         orderby product.Field<int>("Rating") descending
+                         select product;
+            Console.WriteLine("\n------ Records of User Id - 10 ------\n");
             foreach (var item in result)
             {
                 Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));

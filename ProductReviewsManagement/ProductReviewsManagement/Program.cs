@@ -2,7 +2,7 @@
     "2 - Retrieve Products with rating higher then 3\n\t3 - To get count of reviews for a product ID\n\t" +
     "4 - Retrieve Product Ids and Reviews\n\t5 - Skip Top 5 records and display\n\t6 - Retrieve Product Ids and Reviews\n\t" +
     "7 - Create DataTable with reviews data\n\t8 - Records with Islike value True\n\t9 - Average rating of each Product Id's\n\t" +
-    "10 - Products with review is Nice\n");
+    "10 - Products with review is Nice\n\t11 - Records having user Id as 10\n");
 int choice = Convert.ToInt32(Console.ReadLine());
 ProductReviewsManagement.ReviewsManagement reviewsManagement = new ProductReviewsManagement.ReviewsManagement();
 /* ------- ADDS DEFAULT DATA INTO PRODUCT REVIEWS LIST ------- */
@@ -71,6 +71,8 @@ switch (choice)
     case 10:
         reviewsManagement.ReviewIsNice(reviews);
         break;
-
+    case 11:
+        reviewsManagement.RecordsForUserID10(reviews);
+        break;
 }
 
