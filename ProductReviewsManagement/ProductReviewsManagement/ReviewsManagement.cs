@@ -76,7 +76,7 @@ namespace ProductReviewsManagement
             }
         }
         //UC 8 CREATE DATA TABLE AND ADD VALUES TO IT
-        public void createDatatable(List<ProductReview> productReviews)
+        public DataTable createDatatable(List<ProductReview> productReviews)
         {
             DataTable table = new DataTable();
             table.Columns.Add("ProductID", typeof(Int32));
@@ -93,7 +93,21 @@ namespace ProductReviewsManagement
             {
                 Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));
             }
+            return table;
             
+        }
+        //UC9 - DISPLAYS RECORDS FROM TABLE WHOSE ISLIKE VALUE IS TRUE
+        public void IsLikeValueTrue(List<ProductReview> productReviews)
+        {
+            DataTable table = createDatatable(productReviews);
+            var result = (from product in table.AsEnumerable()
+                          where product.Field<bool>("isLike") == true
+                          select product);
+            Console.WriteLine("\nRecords Whose IsLike value is true.\n");
+            foreach (var item in result)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));
+            }
         }
     }
 }
