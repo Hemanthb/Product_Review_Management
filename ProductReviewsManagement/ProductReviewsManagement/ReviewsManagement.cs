@@ -124,5 +124,18 @@ namespace ProductReviewsManagement
                 Console.WriteLine("ProductID: " + item.ProductID + "\tAverage: " + item.Average);
             }
         }
+        //UC11 records contains review "nice"
+        public void ReviewIsNice(List<ProductReview> productReviews)
+        {
+            DataTable table = createDatatable(productReviews);
+            var result = from product in table.AsEnumerable()
+                         where product.Field<string>("Review") == "Nice"
+                         select product;
+            Console.WriteLine("-------- Records With Reviews Rated Nice --------");
+            foreach (var item in result)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductID") + "\tUserID: " + item.Field<int>("UserID") + "\tRating: " + item.Field<int>("Rating") + "\tReview: " + item.Field<string>("Review") + "\tisLike: " + item.Field<bool>("isLike"));
+            }
+        }
     }
 }
